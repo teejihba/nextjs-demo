@@ -1,0 +1,25 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8" stop-opacity="0.35" />
+      <stop offset="0.45" stop-color="#6366f1" stop-opacity="0.25" />
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0.2" />
+    </linearGradient>
+    <radialGradient id="radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 400) rotate(90) scale(500 500)">
+      <stop stop-color="#ffffff" stop-opacity="0.12" />
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#gradient)" />
+  <rect width="1200" height="800" fill="url(#radial)" />
+  <g opacity="0.25" stroke="#ffffff" stroke-width="0.5">
+    <circle cx="200" cy="160" r="120" />
+    <circle cx="980" cy="140" r="160" />
+    <circle cx="420" cy="600" r="200" />
+    <circle cx="900" cy="520" r="180" />
+  </g>
+  <g opacity="0.3" stroke="#ffffff" stroke-width="0.5">
+    <path d="M0 520C200 480 320 440 520 540C720 640 840 620 1200 520" />
+    <path d="M0 620C200 580 320 540 520 640C720 740 840 720 1200 620" />
+  </g>
+</svg>
