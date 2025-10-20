@@ -12,7 +12,6 @@ import {
   Volume2,
   Video,
   VideoOff,
-  Sparkles,
 } from "lucide-react";
 
 import { ParticipantCard } from "@/components/call/participant-card";
@@ -31,17 +30,6 @@ const participants = [
   },
 ];
 
-type FilterType = 'none' | 'robot' | 'cat' | 'rainbow' | 'neon' | 'space';
-
-const filters = [
-  { id: 'none', name: 'None', icon: '👤' },
-  { id: 'robot', name: 'Robot', icon: '🤖' },
-  { id: 'cat', name: 'Cat', icon: '🐱' },
-  { id: 'rainbow', name: 'Rainbow', icon: '🌈' },
-  { id: 'neon', name: 'Neon', icon: '⚡' },
-  { id: 'space', name: 'Space', icon: '🚀' },
-];
-
 export default function Home() {
   const [interviewStartTime] = useState(() => Date.now());
   const [currentTime, setCurrentTime] = useState(Date.now());
@@ -49,7 +37,6 @@ export default function Home() {
   const [transcript, setTranscript] = useState<string>("");
   const [interimTranscript, setInterimTranscript] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
-  const [currentFilter, setCurrentFilter] = useState<FilterType>('none');
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   const callStartTime = useMemo(() => {
@@ -141,14 +128,7 @@ export default function Home() {
     setShowVideo(prev => !prev);
   }, []);
 
-  // Cycle through filters
-  const cycleFilter = useCallback(() => {
-    setCurrentFilter(prev => {
-      const currentIndex = filters.findIndex(f => f.id === prev);
-      const nextIndex = (currentIndex + 1) % filters.length;
-      return filters[nextIndex].id as FilterType;
-    });
-  }, []);
+
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
@@ -176,7 +156,7 @@ export default function Home() {
       </header>
 
       <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-6 py-6">
-        <section className="grid flex-1 gap-4 lg:grid-cols-[240px_1fr]">
+        <section className="grid flex-1 gap-4 lg:grid-cols-[360px_1fr]">
           {/* Participants Section - Compact */}
           <div className="flex flex-col gap-3">
             {/* Large Candidate Preview when video is enabled */}
@@ -188,7 +168,6 @@ export default function Home() {
                   background="from-purple-500/70 via-violet-500/60 to-fuchsia-800/70"
                   showVideo={true}
                   size="large"
-                  filter={currentFilter}
                 />
               </div>
             ) : null}
@@ -211,11 +190,6 @@ export default function Home() {
               <div className="flex items-center gap-2 text-xs text-white/70">
                 <Wifi className="h-3 w-3 text-emerald-400" />
                 <span className="text-xs">Good</span>
-                {currentFilter !== 'none' && showVideo && (
-                  <span className="text-xs text-purple-400">
-                    {filters.find(f => f.id === currentFilter)?.icon} {filters.find(f => f.id === currentFilter)?.name}
-                  </span>
-                )}
               </div>
               <div className="flex items-center gap-1">
                 <Button 
@@ -233,15 +207,6 @@ export default function Home() {
                   className={`h-6 w-6 ${showVideo ? 'bg-blue-500/20 text-blue-400' : 'bg-white/5 text-white hover:bg-white/10'}`}
                 >
                   {showVideo ? <VideoOff className="h-3 w-3" /> : <Video className="h-3 w-3" />}
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  onClick={cycleFilter}
-                  className={`h-6 w-6 ${currentFilter !== 'none' ? 'bg-purple-500/20 text-purple-400' : 'bg-white/5 text-white hover:bg-white/10'}`}
-                  disabled={!showVideo}
-                >
-                  <Sparkles className="h-3 w-3" />
                 </Button>
                 <Button variant="destructive" size="icon" className="h-6 w-6 rounded-full text-white">
                   <PhoneOff className="h-3 w-3" />
