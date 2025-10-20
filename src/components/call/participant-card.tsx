@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 interface ParticipantCardProps {
   name: string;
   isSpeaking?: boolean;
-  status?: string;
   muted?: boolean;
   background?: string;
 }
@@ -14,7 +13,6 @@ const fallbackGradient = "from-slate-700 via-slate-800 to-slate-900";
 export function ParticipantCard({
   name,
   isSpeaking,
-  status,
   muted,
   background,
 }: ParticipantCardProps) {
@@ -28,9 +26,6 @@ export function ParticipantCard({
     >
       <div className="relative z-10">
         <p className="text-lg font-semibold drop-shadow-lg">{name}</p>
-        {status ? (
-          <p className="text-sm text-white/70 drop-shadow-lg">{status}</p>
-        ) : null}
       </div>
       <div className="flex items-center gap-2 text-sm text-white/70">
         {muted ? (
